@@ -1,0 +1,12 @@
+import org.apache.spark.streaming.StreamingContext
+import org.apache.spark.streaming.StreamingContext._
+import org.apache.spark.streaming.Seconds
+
+
+val streaming = new StreamingContext(sc,Seconds(20))
+val meudstream = streaming.socketTextStream("localhost",4444)
+
+meudstream.saveAsTextFiles("file:/home/training/LogsExec/Streaming/")
+
+
+streaming.start()

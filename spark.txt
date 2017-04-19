@@ -1,0 +1,8 @@
+from pyspark import SparkContext
+
+sc = SparkContext("local", "Agulha")
+
+logs = sc.textFile("file:/home/training/LogsExec/export_agulha.csv")
+primeira = logs.first()
+lista = logs.filter(lambda x: x if(x!= primeira) else None)
+lista.saveAsTextFile("file:/home/training/EtlSparkStreaming/Processados/")
